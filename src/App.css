@@ -1,9 +1,55 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f5f5f5;
+  --card-shadow: rgba(0,0,0,0.1);
+  --title-color: #333333;
+  --pill-bg: #e0e0e0;
+  --pill-text: #000000;
+  --about-color: #555555;
+  --section-title: #222222;
+  --icon-btn-bg: #f0f0f0;
+  --icon-btn-color: #000000;
+  --icon-btn-hover-bg: #e0e0e0;
+  --news-card-bg: #ffffff;
+  --news-body-title: #222222;
+  --news-body-text: #555555;
+  --project-card-bg: #f5f5f5;
+  --project-body-title: #222222;
+  --project-body-text: #555555;
+  --project-img-bg: #ffffff;
+  --avatar-border: #ddd;
+  --github-link-color: #333;
+}
+body.dark-theme {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --card-shadow: rgba(0,0,0,0.5);
+  --title-color: #ffffff;
+  --pill-bg: #333333;
+  --pill-text: #e0e0e0;
+  --about-color: #cccccc;
+  --section-title: #ffffff;
+  --icon-btn-bg: #333333;
+  --icon-btn-color: #ffffff;
+  --icon-btn-hover-bg: #444444;
+  --news-card-bg: #1e1e1e;
+  --news-body-title: #ffffff;
+  --news-body-text: #cccccc;
+  --project-card-bg: #1e1e1e;
+  --project-body-title: #ffffff;
+  --project-body-text: #cccccc;
+  --project-img-bg: #2a2a2a;
+  --avatar-border: #555555;
+  --github-link-color: #e0e0e0;
+}
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background: #0f172a; /* Dark navy background */
-  color: #f1f5f9;      /* Light text */
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 
 .container {
@@ -16,14 +62,31 @@ body {
   gap: 20px;
 }
 
+.projects-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+.projects-track::-webkit-scrollbar { display: none; }
+.projects-track { scrollbar-width: none; }
+
+.project-card {
+  flex: 0 0 auto;
+  min-width: 240px;
+  max-width: 300px;
+  scroll-snap-align: start;
+}
+
 .card {
-  background: #1e293b; /* Dark slate card */
+  background: var(--card-bg);
   border-radius: 14px;
-  box-shadow: 0 6px 24px rgba(0,0,0,.4);
+  box-shadow: 0 6px 24px var(--card-shadow);
   overflow: hidden;
 }
 
-/* Top profile row */
 .profile {
   display: grid;
   grid-template-columns: 180px 1fr;
@@ -36,7 +99,7 @@ body {
   height: 180px;
   object-fit: cover;
   border-radius: 16px;
-  border: 3px solid #334155; /* Slight border for separation */
+  border: 3px solid var(--avatar-border);
 }
 .bio h1 {
   margin: 0 0 4px;
@@ -44,7 +107,7 @@ body {
   line-height: 1.2;
 }
 .title {
-  color: #94a3b8;
+  color: var(--title-color);
   margin-bottom: 12px;
 }
 .pills {
@@ -58,26 +121,24 @@ body {
 .pill {
   padding: 6px 10px;
   border-radius: 999px;
-  background: #334155;
+  background: var(--pill-bg);
   font-size: 14px;
-  color: #e2e8f0;
+  color: var(--pill-text);
 }
 .about {
   margin: 0;
-  color: #cbd5e1;
+  color: var(--about-color);
 }
 
-/* Sections */
 .section {
   padding: 18px;
 }
 .section h3 {
   margin: 0 0 12px;
   font-size: 20px;
-  color: #f8fafc;
+  color: var(--section-title);
 }
 
-/* News row */
 .section-head {
   display: flex;
   justify-content: space-between;
@@ -86,8 +147,8 @@ body {
 }
 .icon-btn {
   border: 0;
-  background: #334155;
-  color: #f1f5f9;
+  background: var(--icon-btn-bg);
+  color: var(--icon-btn-color);
   width: 36px;
   height: 36px;
   border-radius: 10px;
@@ -95,7 +156,7 @@ body {
   transition: background 0.2s ease;
 }
 .icon-btn:hover {
-  background: #475569;
+  background: var(--icon-btn-hover-bg);
 }
 .icon-btn + .icon-btn {
   margin-left: 8px;
@@ -115,18 +176,17 @@ body {
   flex: 0 0 300px;
   border-radius: 12px;
   overflow: hidden;
-  background: #0f172a; /* Darker inside */
+  background: var(--news-card-bg);
 }
 
 .news-card img {
   width: 100%;
-  height: 150px;           /* uniform height */
-  object-fit: contain;     /* shows full image without cropping */
-  background-color: #ffffff;  /* fill space around smaller images */
-  padding: 5px;            /* optional: spacing inside the background */
-  border-radius: 8px;      /* optional: rounded corners */
+  height: 150px;
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 8px;
 }
-
 
 .news-body {
   padding: 12px;
@@ -134,17 +194,18 @@ body {
 .news-body h4 {
   margin: 0 0 6px;
   font-size: 16px;
-  color: #f8fafc;
+  color: var(--news-body-title);
 }
 .news-body p {
-  color: #cbd5e1;
+  color: var(--news-body-text);
 }
+
 .project-links {
   display: flex;
   gap: 8px;
-  margin-top: 0.75rem; /* pushes buttons down */
+  margin-top: 0.75rem;
 }
-/* Projects grid */
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -153,26 +214,25 @@ body {
 
 .project-card img {
   width: 100%;
-  width: 100%;          /* or a fixed px width if you prefer */
-  height: 160px;        /* fixed height */
-  object-fit: contain;  /* keeps scale without cropping */
-  background-color: #111; /* fills empty space behind image */
-  padding: 8px;         /* gives breathing room around logo */
-  border-radius: 8px;   /* optional: rounded corners */
+  height: 160px;
+  object-fit: contain;
+  background-color: var(--project-img-bg);
+  padding: 8px;
+  border-radius: 8px;
 }
 .project-body {
   padding: 12px;
 }
 .project-body h4 {
-  color: #f8fafc;
+  color: var(--project-body-title);
 }
 .project-body p {
-  color: #cbd5e1;
+  color: var(--project-body-text);
 }
 .project-card {
-  background: #0f172a;
+  background: var(--project-card-bg);
 }
-/* Responsive tweaks */
+
 @media (max-width: 700px) {
   .profile { grid-template-columns: 120px 1fr; }
   .avatar { width: 120px; height: 120px; }
@@ -183,11 +243,54 @@ body {
 }
 
 li.pill.github a {
-  color: white;
+  color: var(--github-link-color);
   text-decoration: none !important;
 }
 li.pill.github a:hover {
-  color: white;
+  color: var(--github-link-color);
   text-decoration: none !important;
 }
 
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  background: var(--icon-btn-bg);
+  color: var(--icon-btn-color);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+  background: var(--icon-btn-hover-bg);
+}
+
+/* Base link style for pills inside the profile ONLY */
+.profile .pills .pill > a.profile__pill-link {
+  color: inherit;             /* inherits from .pill (your theme) */
+  text-decoration: none;      /* remove underline */
+  display: flex;              /* align icon + text */
+  align-items: center;
+}
+
+/* Social links default spacing */
+.profile .pills .pill > a.profile__pill-link[data-variant="social"] {
+  gap: 6px;
+}
+
+/* GitHub needs slightly tighter spacing */
+.profile .pills .pill > a.profile__pill-link[data-variant="social"][data-network="github"] {
+  gap: 4px;
+}
+
+/* Keep it clean on hover */
+.profile .pills .pill > a.profile__pill-link:hover {
+  text-decoration: none;
+}
