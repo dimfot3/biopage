@@ -372,7 +372,6 @@ li.pill.github a:hover {
   font-size: clamp(23px, 4vw, 30px);
   font-weight: 900;
   margin: 0 0 4px;
-  text-transform: uppercase;
 }
 
 .hud-about {

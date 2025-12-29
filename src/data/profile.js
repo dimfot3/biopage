@@ -42,5 +42,5 @@ export const athletic_profile = {
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
   ],
-  about:  "Hi my name is Fotiou Dimitrios and i am a long distance runner. Recently i focus on trail routs bigger than 20km.",
+  about:  "Hi, I’m Dimitrios Fotiou, with two years of consistent training behind me, my focus is now on trail routes over 25km. I run because every path tells a story, and I’m out here to see where mine leads.",
 };
