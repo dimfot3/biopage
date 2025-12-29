@@ -253,26 +253,6 @@ li.pill.github a:hover {
   text-decoration: none !important;
 }
 
-.theme-toggle {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 9999;
-  background: var(--icon-btn-bg);
-  color: var(--icon-btn-color);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: background 0.3s;
-}
-
-.theme-toggle:hover {
-  background: var(--icon-btn-hover-bg);
-}
 
 /* Base link style for pills inside the profile ONLY */
 .profile .pills .pill > a.profile__pill-link {
@@ -296,3 +276,337 @@ li.pill.github a:hover {
 .profile .pills .pill > a.profile__pill-link:hover {
   text-decoration: none;
 }
+
+/* --- CRITICAL: ZERO GAP CIRCULAR STYLING --- */
+
+.controls-panel.circle-group {
+    position: fixed;
+    top: 16px;
+    right: 16px; 
+    z-index: 9999; 
+    display: flex;
+    gap: 0; /* ⬅️ No gap here */
+    box-shadow: none; 
+    border-radius: 0; 
+}
+
+/* Styling for all circular control buttons */
+.controls-panel .control-circle {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    padding: 0;
+    
+    /* Crucial for merging them */
+    margin-left: 3px; 
+    
+    /* Ensure styles like background, border, and box-shadow use your theme variables */
+    background: var(--icon-btn-bg);
+    color: var(--icon-btn-color);
+    border: 1px solid var(--icon-btn-hover-bg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
+    font-size: 18px; 
+}
+
+/* Only the first button (Speed Mode) should NOT have the negative margin */
+.controls-panel .control-circle:first-child {
+    margin-left: 0;
+}
+
+/* --- ATHLETIC PAGE REDESIGN --- */
+/* ============================================================
+   1. HUD BASE LAYOUT
+   ============================================================ */
+.hud-container {
+  position: relative;
+  padding: 40px 20px;
+  min-height: 100vh;
+  font-family: ui-monospace, 'Courier New', monospace;
+  color: var(--text-color);
+}
+
+/* Futuristic background grid */
+.grid-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(var(--avatar-border) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.hud-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   2. PROFILE HUD CARD
+   ============================================================ */
+.hud-profile-card {
+  display: flex;
+  gap: 25px;
+  padding: 25px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--avatar-border);
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.hud-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  border: 2px solid var(--pill-text) !important;
+  filter: grayscale(0.3) contrast(1.1);
+  object-fit: cover;
+}
+
+.hud-profile-card .glitch-text {
+  font-size: 26px;
+  font-weight: 900;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+/* About/Bio section under the name */
+.hud-about {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--avatar-border);
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* Social pills (Strava/ITRA) */
+.hud-profile-card .pills {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.hud-profile-card .pills .pill {
+  background: transparent;
+  border: 1px solid var(--avatar-border);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+}
+
+/* ============================================================
+   3. PROGRESSION ANALYTICS (UPWARD BARS)
+   ============================================================ */
+.volume-module {
+  background: var(--card-bg);
+  border: 1px solid var(--avatar-border);
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.volume-stats {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 25px;
+}
+
+.big-stat .value {
+  font-size: 36px;
+  font-weight: 900;
+  display: block;
+  line-height: 1;
+}
+
+.big-stat .unit {
+  font-size: 10px;
+  color: var(--pill-text);
+  font-weight: bold;
+}
+
+.progression-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  padding-top: 20px;
+  border-top: 1px solid var(--avatar-border);
+}
+
+/* CRITICAL: align-items: flex-end ensures bars grow from bottom-up */
+.bars-wrapper {
+  display: flex;
+  align-items: flex-end;      /* Aligns the columns to the bottom of the chart area */
+  justify-content: space-between;
+  height: 150px;              /* Set a fixed height for the chart area */
+  gap: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03); 
+  border-radius: 4px;
+}
+
+.bar-column {
+  flex: 1;
+  height: 100%;               /* Take full height of the wrapper */
+  display: flex;
+  flex-direction: column;     /* Stack bar on top of the year */
+  justify-content: flex-end;  /* Pushes everything to the bottom */
+  align-items: center;
+}
+
+.bar-fill {
+  width: 100%;
+  border-radius: 2px 2px 0 0; /* Rounded corners only on the top */
+  position: relative;
+  transition: height 1s ease; /* Smooth growing animation */
+}
+
+/* Bar value tooltip on hover */
+.bar-fill:hover::after {
+  content: attr(data-value);
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--pill-text);
+  padding: 2px 6px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.chart-year {
+  font-size: 9px;
+  margin-top: 6px;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   4. PERSONAL BESTS (RECORDS)
+   ============================================================ */
+.records-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.record-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--avatar-border);
+  padding: 15px;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Futuristic corner accent */
+.record-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 10px; height: 10px;
+  border-top: 2px solid var(--pill-text);
+  border-left: 2px solid var(--pill-text);
+}
+
+.record-dist {
+  font-size: 10px;
+  color: var(--pill-text);
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+}
+
+.record-time {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+}
+
+.record-meta {
+  margin-top: 10px;
+  font-size: 10px;
+  opacity: 0.6;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 8px;
+}
+
+/* ============================================================
+   5. MISSION LOG & EXPAND BUTTON
+   ============================================================ */
+.history-module {
+  background: var(--card-bg);
+  border: 1px solid var(--avatar-border);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+/* Corrected Terminal-Style Button */
+.expand-btn {
+  background: transparent;
+  border: 1px solid var(--avatar-border);
+  color: var(--pill-text);
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.expand-btn:hover {
+  background: rgba(0, 243, 255, 0.05);
+  border-color: var(--pill-text);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.expand-btn::before { content: "[ "; }
+.expand-btn::after { content: " ]"; }
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.log-table th {
+  text-align: left;
+  color: var(--pill-text);
+  padding: 10px;
+  border-bottom: 1px solid var(--avatar-border);
+  font-size: 11px;
+}
+
+.log-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+}
+
+/* ============================================================
+   6. UTILITIES
+   ============================================================ */
+.module-label {
+  font-size: 10px;
+  opacity: 0.5;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.neon { color: var(--pill-text); font-weight: bold; }
+.dim { opacity: 0.5; }
+.highlight { font-weight: bold; }

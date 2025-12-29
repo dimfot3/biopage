@@ -1,6 +1,6 @@
 export const NEWS = [
   {
-    id: 'aiia-cvml-start',
+    id: 'd-cube',
     title: 'Joined D-cube as Machine Learning Engineer',
     desc: 'Developing AI-powered vision systems to enhance surface inspection in Industry 4.0',
     image: `${import.meta.env.BASE_URL}images/dcube.png`, // put file in /public/images/

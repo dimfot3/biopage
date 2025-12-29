@@ -1,4 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+// src/BioPage.jsx (The new, clean version)
+
+import React, { useRef } from 'react';
 import { NEWS } from './data/news';
 import { PROJECTS } from './data/projects';
 import { profile } from './data/profile';
@@ -40,15 +42,16 @@ function SocialIcon({ type, size = 16 }) {
   return null;
 }
 
-export default function BioPage() {
+// Accepts the isSpeedMode prop from the parent App component
+export default function BioPage({ isSpeedMode }) {
   const newsTrackRef = useRef(null);
-  // 1) add a ref and a scroll handler
   const projectsTrackRef = useRef(null);
 
   const scrollProjects = (direction) => {
     const track = projectsTrackRef.current;
     if (!track) return;
-    const card = track.querySelector('.project-card');
+    // Note: If you use speed mode to hide elements, the scroll width might change.
+    const card = track.querySelector('.project-card'); 
     if (!card) return;
     const width = card.getBoundingClientRect().width + 16; // card width + gap
     track.scrollBy({ left: direction * width, behavior: 'smooth' });
@@ -63,25 +66,25 @@ export default function BioPage() {
     track.scrollBy({ left: direction * width, behavior: 'smooth' });
   };
 
-  const [darkMode, setDarkMode] = useState(true);
+  // Removed: darkMode state and useEffect hook
 
-  useEffect(() => {
-    document.body.classList.toggle("dark-theme", darkMode);
-  }, [darkMode]);
   const imgSrc = `${import.meta.env.BASE_URL}${profile.avatar}`;
 
   return (
     <>
-      {/* Floating theme toggle */}
-      <button
-        className="theme-toggle"
-        onClick={() => setDarkMode((prev) => !prev)}
-        title="Toggle theme"
-      >
-        {darkMode ? "☀" : "🌙"}
-      </button>
-      <div className="container">
+      {/* The theme toggle button is REMOVED from here */}
+      
+      {/* Apply a class to the container when speed mode is active */}
+      <div className={`container ${isSpeedMode ? 'bio-speed-mode' : ''}`}>
         <main className="content">
+          
+          {/* Optional: Add a visual indicator for speed mode */}
+          {isSpeedMode && (
+              <div className="speed-mode-indicator" style={{textAlign: 'center', padding: '10px', background: 'var(--accent-color)', color: 'white'}}>
+                  ⚡ Bio Page in Speed Mode ⚡
+              </div>
+          )}
+
           {/* Top: Photo (left) + Bio (right) */}
           <section className="card profile">
             <img className="avatar" src={imgSrc} alt="Your portrait" />
@@ -127,48 +130,50 @@ export default function BioPage() {
             </div>
           </section>
 
-          {/* Below: News */}
-          <section className="card section news-wrap" aria-label="News">
-            <div className="section-head">
-              <h3>Milestones</h3>
-              <div className="news-controls">
-                <button className="icon-btn" onClick={() => scrollNews(-1)}>◀</button>
-                <button className="icon-btn" onClick={() => scrollNews(1)}>▶</button>
+          {/* Below: News - Hides the entire section in Speed Mode */}
+          {!isSpeedMode && (
+            <section className="card section news-wrap" aria-label="Milestones">
+              <div className="section-head">
+                <h3>Milestones</h3>
+                <div className="news-controls">
+                  <button className="icon-btn" onClick={() => scrollNews(-1)}>◀</button>
+                  <button className="icon-btn" onClick={() => scrollNews(1)}>▶</button>
+                </div>
               </div>
-            </div>
 
-            <div className="news-track" ref={newsTrackRef}>
-              {NEWS.map((item) => {
-                const start = new Date(item.startDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
-                const end = item.endDate
-                  ? new Date(item.endDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
-                  : 'Present';
+              <div className="news-track" ref={newsTrackRef}>
+                {NEWS.map((item) => {
+                  const start = new Date(item.startDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+                  const end = item.endDate
+                    ? new Date(item.endDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
+                    : 'Present';
 
-                return (
-                  <article key={item.id} className="card news-card">
-                    <img src={item.image} alt={item.title} />
-                    <div className="news-body">
-                      <h4>{item.title}</h4>
-                      <small className="news-date">
-                        {start} – {end}
-                      </small>
-                      <p>{item.desc}</p>
-                      {item.url && (
-                        <a
-                          className="pill"
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Read more →
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </section>
+                  return (
+                    <article key={item.id} className="card news-card">
+                      <img src={item.image} alt={item.title} />
+                      <div className="news-body">
+                        <h4>{item.title}</h4>
+                        <small className="news-date">
+                          {start} – {end}
+                        </small>
+                        <p>{item.desc}</p>
+                        {item.url && (
+                          <a
+                            className="pill"
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Read more →
+                          </a>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
           {/* Projects */}
           <section className="card section" aria-label="Projects">
@@ -187,28 +192,32 @@ export default function BioPage() {
                   ? new Date(p.endDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
                   : 'Present';
 
+                // In speed mode, hide descriptions and tech stacks
+                const showDetails = !isSpeedMode; 
+
                 return (
                   <article key={p.id} className="card project-card">
                     <img className="project-img" src={p.image} alt={p.title} />
                     <div className="project-body">
                       <h4>{p.title}</h4>
-                      <p>{p.desc}</p>
+                      
+                      {showDetails && <p>{p.desc}</p>}
 
                       {/* Optional tags */}
-                      {p.tags?.length > 0 && (
+                      {p.tags?.length > 0 && showDetails && (
                         <ul className="chips">
                           {p.tags.map((t) => <li key={t} className="chip">{t}</li>)}
                         </ul>
                       )}
 
                       {/* Optional tech stack */}
-                      {p.tech?.length > 0 && (
+                      {p.tech?.length > 0 && showDetails && (
                         <div className="tech-line">
                           {p.tech.join(' · ')}
                         </div>
                       )}
 
-                      {/* Optional links */}
+                      {/* Optional links (always show links) */}
                       <div className="project-links">
                         {p.demo && (
                           <a className="pill" href={p.demo} target="_blank" rel="noopener noreferrer">
@@ -232,4 +241,3 @@ export default function BioPage() {
     </>
   );
 }
-

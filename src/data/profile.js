@@ -22,3 +22,25 @@ export const profile = {
   about:
     "Hi! I graduated with distinction in Electrical and Computer Engineering, with a GPA of 8.99. I’ve spent a lot of time working on programming projects in machine learning, computer vision, and simulations, and I’ve gotten hands-on with several robotic applications. I’m really excited about finding ways to bring AI into real-world problem-solving.",
 };
+
+export const athletic_profile = {
+  name: "Fotiou Dimitrios",
+  title: "Long Distance Runner",
+  location: "Thessaloniki, Greece",
+  avatar: "images/athliteic_prof.jpg", // kept relative; component will prepend BASE_URL
+  socials: [
+    {
+      type: "Strava",
+      label: "@dimfot3",
+      url: "https://www.strava.com/athletes/124511214",
+    },
+    {
+      type: "ITRA",
+      label: "Dimitrios Fotiou",
+      url: "https://itra.run/api/RunnerSpace/GetRunnerSpace?memberString=Fld4hv7wH9W0jE4myY1FuA%3D%3D",
+    },
+    // Uncomment if you want a CV link:
+    // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
+  ],
+  about:  "Hi my name is Fotiou Dimitrios and i am a long distance runner. Recently i focus on trail routs bigger than 20km.",
+};
