@@ -21,86 +21,94 @@ export default function AthleticPage({ isSpeedMode }) {
   const getH = (val, max) => `${Math.max((val / max) * 100, 8)}%`;
 
   return (
-    <div className={`hud-container ${isSpeedMode ? 'mode-minimal' : 'mode-full'}`}>
+    <div className={`hud-container ${isSpeedMode ? 'bio-speed-mode' : ''}`}>
       <div className="grid-overlay"></div>
 
       <main className="hud-content">
         
         {/* --- 1. PROFILE SECTION --- */}
-        <section className="hud-profile-card">
-          <img className="hud-avatar" src={imgSrc} alt={athletic_profile.name} />
+        <section className="card profile hud-profile-card">
+          <img className="avatar hud-avatar" src={imgSrc} alt={athletic_profile.name} />
+          
           <div className="bio">
             <h1 className="glitch-text">{athletic_profile.name}</h1>
-            <div className="title" style={{opacity: 0.7}}>
+            
+            <div className="title" style={{ opacity: 0.7 }}>
               {athletic_profile.title} · {athletic_profile.location}
             </div>
             
             <ul className="pills">
-              <li className="pill" style={{ borderColor: '#FC4C02' }}>
-                <a href={athletic_profile.socials[0].url} target="_blank" rel="noreferrer" style={{ color: '#FC4C02', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'bold' }}>
+              <li className="pill" style={{ borderColor: '#FC4C02', background: 'transparent' }}>
+                <a href={athletic_profile.socials[0].url} target="_blank" rel="noreferrer" 
+                  style={{ color: '#FC4C02', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'bold' }}>
                   <StravaIcon /> STRAVA
                 </a>
               </li>
-              <li className="pill" style={{ borderColor: '#34D399' }}>
-                <a href={athletic_profile.socials[1].url} target="_blank" rel="noreferrer" style={{ color: '#34D399', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'bold' }}>
+              <li className="pill" style={{ borderColor: '#34D399', background: 'transparent' }}>
+                <a href={athletic_profile.socials[1].url} target="_blank" rel="noreferrer" 
+                  style={{ color: '#34D399', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 'bold' }}>
                   <ItraIcon /> ITRA
                 </a>
               </li>
             </ul>
 
-            <p className="hud-about">{athletic_profile.about}</p>
+            <p className="about hud-about">{athletic_profile.about}</p>
           </div>
         </section>
 
         {/* --- 2. PROGRESSION ANALYTICS --- */}
-        <section className="volume-module">
-          <div className="module-label">MISSION_CAPACITY_TRANSITION // 2022-2025</div>
-          
-          <div className="volume-stats">
-            <div className="big-stat">
-              <span className="unit">TOTAL_KM_2025</span>
-              <span className="value">{annualVolume.distance}</span>
+        {isSpeedMode && (
+          <section className="card section volume-module">
+            <div className="module-label" style={{ marginBottom: '20px' }}>
+              TOTAL TRAIN VOLUME // 2022-2025
             </div>
-            <div className="big-stat">
-              <span className="unit">TOTAL_VERT_2025</span>
-              <span className="value">{annualVolume.elevation}M</span>
-            </div>
-          </div>
-
-          <div className="progression-container">
-            <div className="chart-box">
-              <div className="module-label" style={{fontSize: '9px'}}>DISTANCE_EVOLUTION (KM)</div>
-              <div className="bars-wrapper">
-                {progressionData.map(d => (
-                  <div key={d.year} className="bar-column">
-                    <div className="bar-fill" data-value={`${d.km}km`} 
-                      style={{ height: getH(d.km, 2795), background: 'var(--pill-text)', opacity: d.year === '2025' ? 1 : 0.4 }} />
-                    <span className="chart-year">{d.year}</span>
-                  </div>
-                ))}
+            
+            <div className="volume-stats-grid">
+              <div className="big-stat">
+                <span className="stat-label">Total_KM_2025</span>
+                <span className="stat-value">{annualVolume.distance}</span>
+              </div>
+              <div className="big-stat">
+                <span className="stat-label">Total_Elev_Gain_2025</span>
+                <span className="stat-value">{annualVolume.elevation}M</span>
               </div>
             </div>
 
-            <div className="chart-box">
-              <div className="module-label" style={{fontSize: '9px'}}>VERTICAL_EVOLUTION (M)</div>
-              <div className="bars-wrapper">
-                {progressionData.map(d => (
-                  <div key={d.year} className="bar-column">
-                    <div className="bar-fill" data-value={`${d.elevation}m`} 
-                      style={{ height: getH(d.elevation, 30000), background: '#34D399', opacity: d.year === '2025' ? 1 : 0.4 }} />
-                    <span className="chart-year">{d.year}</span>
-                  </div>
-                ))}
+            <div className="progression-container">
+              <div className="chart-box">
+                <div className="module-label-sub">Total Distance (KM)</div>
+                <div className="bars-wrapper">
+                  {progressionData.map(d => (
+                    <div key={d.year} className="bar-column">
+                      <div className="bar-fill" data-value={`${d.km}km`} 
+                        style={{ height: getH(d.km, 2795), background: 'var(--pill-text)', opacity: d.year === '2025' ? 1 : 0.4 }} />
+                      <span className="chart-year">{d.year}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="chart-box">
+                <div className="module-label-sub">Elevation Gain (M)</div>
+                <div className="bars-wrapper">
+                  {progressionData.map(d => (
+                    <div key={d.year} className="bar-column">
+                      <div className="bar-fill" data-value={`${d.elevation}m`} 
+                        style={{ height: getH(d.elevation, 30000), background: '#34D399', opacity: d.year === '2025' ? 1 : 0.4 }} />
+                      <span className="chart-year">{d.year}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* --- 3. PERSONAL BESTS --- */}
-        <div className="module-label">PERSONAL_BEST_ARCHIVE</div>
+        <div className="module-label" style={{marginTop: '10px'}}>PERSONAL_BEST_ARCHIVE</div>
         <section className="records-grid">
           {records.map((r) => (
-            <div key={r.distance} className="record-card">
+            <div key={r.distance} className="card record-card">
               <span className="record-dist">{r.distance}</span>
               <span className="record-time">{r.time}</span>
               {!isSpeedMode && (
@@ -114,32 +122,34 @@ export default function AthleticPage({ isSpeedMode }) {
         </section>
 
         {/* --- 4. MISSION LOG --- */}
-        <section className="history-module">
+        <section className="card section history-module">
           <div className="section-head">
-            <div className="module-label" style={{ marginBottom: 0 }}>MISSION_LOG // COMPLETED_RACES</div>
+            <div className="module-label" style={{ marginBottom: 0 }}>MISSION_LOG // RACE_HISTORY</div>
             <button className="expand-btn" onClick={() => setIsExpanded(!isExpanded)}>
-              {isExpanded ? 'Collapse_History' : 'Expand_History'}
+              {isExpanded ? 'Collapse' : 'Expand_All'}
             </button>
           </div>
+          
           <div className="log-table-wrapper">
             <table className="log-table">
               <thead>
                 <tr>
                   <th>DATE</th>
                   <th>EVENT</th>
-                  <th>DIST</th>
-                  <th>VERT</th>
-                  <th>RESULT</th>
+                  <th className="km-cell">KM</th>
+                  <th className="alt-cell">D+</th>
+                  <th style={{ textAlign: 'right' }}>RESULT</th>
                 </tr>
               </thead>
               <tbody>
                 {displayedRaces.map((race, i) => (
                   <tr key={i} className="log-row">
-                    <td className="dim">{race.date}</td>
-                    <td className="highlight">{race.name}</td>
-                    <td>{race.dist}</td>
-                    <td className="dim">{race.alt}</td>
-                    <td className="neon">{race.time}</td>
+                    <td className="dim date-cell">{race.date}</td>
+                    <td className="highlight name-cell">{race.name}</td>
+                    {/* KM is now protected from shrinking */}
+                    <td className="km-cell">{race.dist}</td>
+                    <td className="dim alt-cell">{race.alt}</td>
+                    <td className="neon result-cell">{race.time}</td>
                   </tr>
                 ))}
               </tbody>
