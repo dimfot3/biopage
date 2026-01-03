@@ -19,7 +19,7 @@ export const profile = {
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
   ],
-  about: "I transform complex data into autonomous intelligence, bridging the software-hardware divide. My experience includes developing Greece’s first autonomous Formula Student car, contributing to the €11M EU disaster management project (TEMA), and driving Industry 4.0 innovations for leading aluminum producers. I specialize in real-time AI using C++, Python, and CUDA, with expertise in RGB/IR, LiDAR, and INS sensor integration. Graduated with Distinction in minimum time from the Polytechnic School of Electrical & Computer Engineering in Thessaloniki (GPA: 8.99).",
+  about: "I transform complex data into autonomous intelligence, bridging the software-hardware divide. My experience includes developing Greece’s first autonomous Formula Student car, contributing to the €11M EU disaster management project (TEMA), and currently driving Industry 4.0 innovations for leading aluminum producers. I engineer high-performance AI solutions with C++, Python, CUDA, and TensorRT, integrated across RGB/IR, LiDAR, and INS sensors. I Graduated with Distinction in minimum time from the Polytechnic School of Electrical & Computer Engineering in Thessaloniki (GPA: 8.99).",
 };
 
 export const athletic_profile = {
