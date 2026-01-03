@@ -46,5 +46,5 @@ export const progressionData = [
   { year: '2022', km: 411, elevation: 50 },
   { year: '2023', km: 606, elevation: 450 },
   { year: '2024', km: 1272, elevation: 4724 },
-  { year: '2025', km: 2795, elevation: 30000 },
+  { year: '2025', km: 2820, elevation: 30000 },
 ];
