@@ -7,7 +7,7 @@ export const athleticProfile = {
     { distance: "42K", time: "3:45:04", pace: "5:20", date: "Apr 2025" },
   ],
   annualVolume: {
-    distance: "2,795",
+    distance: "2,820",
     elevation: "30,000",
     year: "2025"
   },
