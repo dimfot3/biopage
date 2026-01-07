@@ -41,5 +41,5 @@ export const athletic_profile = {
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
   ],
-  about:  "I consider myself an explorer of both the internal and external. Through the discipline of training and consistency, I test the limits of my own body. This internal journey is what grants me access to the world’s most hidden wonders, from the shadows of deep forest canyons to the silence of high-altitude peaks.",
+  about:  "I apply the same discipline I use in engineering to my physical training. Staying fit allows me to explore the outdoors in ways most people can't, whether it's navigating deep canyons or climbing mountain summits.",
 };
