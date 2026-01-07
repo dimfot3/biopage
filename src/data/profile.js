@@ -19,7 +19,7 @@ export const profile = {
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
   ],
-  about: "I build AI systems that connect software to physical hardware. My experience includes developing Greece's first autonomous Formula Student car and contributing to TEMA, an €11M EU disaster management project. Currently, I’m implementing Industry 4.0 solutions for major aluminum producers. I graduated with distinction (GPA: 8.99) in minimum time from the Polytechnic School of ECE in Thessaloniki.",
+  about: "I build AI systems for robotic and automation systems. My experience includes developing Greece's first autonomous Formula Student car and contributing to TEMA, an €11M EU disaster management project. Currently, I’m implementing Industry 4.0 solutions for major aluminum producers. I graduated with distinction (GPA: 8.99) in minimum time from the Polytechnic School of ECE in Thessaloniki.",
 };
 
 export const athletic_profile = {
