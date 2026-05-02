@@ -15,32 +15,28 @@ export default function App() {
 
   const PageComponent = isSpeedMode ? AthleticPage : BioPage;
 
+  const toggleSpeed = () => setIsSpeedMode(prev => !prev);
+  const toggleTheme = () => setIsDarkMode(prev => !prev);
+
   return (
     <>
       {/* This panel is positioned top-right via CSS */}
       <div className="controls-panel circle-group">
-          
-          {/* 1. Speed/Page Toggle (LEFT button) */}
           <button
             className={`control-circle speed-page-toggle ${isSpeedMode ? 'active' : ''}`}
-            onClick={() => setIsSpeedMode((prev) => !prev)}
+            onClick={toggleSpeed}
             title={isSpeedMode ? 'Switch to Bio (Normal Mode)' : 'Switch to Athletic (Speed Mode)'}
           >
-            {isSpeedMode 
-              ? '👤' // Lightning/Speed (Athletic Page)
-              : '⚡'  // Simple dot/Solid (Bio Page)
-            }
+            {isSpeedMode ? '👤' : '⚡'}
           </button>
 
-          {/* 2. Theme Toggle (RIGHT button) */}
           <button
             className="control-circle theme-toggle"
-            onClick={() => setIsDarkMode((prev) => !prev)}
+            onClick={toggleTheme}
             title="Toggle Dark/Light theme"
           >
             {isDarkMode ? "☀" : "🌙"}
           </button>
-          
       </div>
 
       <PageComponent isSpeedMode={isSpeedMode} /> 
