@@ -19,7 +19,7 @@ export const profile = {
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
   ],
-  about: "I transform complex data into autonomous intelligence, bridging the software-hardware divide. My experience includes developing Greece’s first autonomous Formula Student car, contributing to the €11M EU disaster management project (TEMA), and currently driving Industry 4.0 innovations for leading aluminum producers. I engineer high-performance AI solutions with C++, Python, CUDA, and TensorRT, integrated across RGB/IR, LiDAR, and INS sensors. I Graduated with Distinction in minimum time from the Polytechnic School of Electrical & Computer Engineering in Thessaloniki (GPA: 8.99).",
+  about: "I build AI systems for robotic and automation systems. My experience includes developing Greece's first autonomous Formula Student car and contributing to TEMA, an €11M EU disaster management project. Currently, I’m implementing Industry 4.0 solutions for major aluminum producers. I graduated with distinction (GPA: 8.99) in minimum time from the Polytechnic School of ECE in Thessaloniki.",
 };
 
 export const athletic_profile = {
@@ -41,5 +41,5 @@ export const athletic_profile = {
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
   ],
-  about:  "I consider myself an explorer of both the internal and external. Through the discipline of training and consistency, I test the limits of my own body. This internal journey is what grants me access to the world’s most hidden wonders, from the shadows of deep forest canyons to the silence of high-altitude peaks.",
+  about:  "I apply the same discipline I use in engineering to my physical training. Staying fit allows me to explore the outdoors in ways most people can't, whether it's navigating deep canyons or climbing mountain summits.",
 };
