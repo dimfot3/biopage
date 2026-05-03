@@ -36,7 +36,7 @@ export const athletic_profile = {
     {
       type: "ITRA",
       label: "Dimitrios Fotiou",
-      url: "https://itra.run/api/RunnerSpace/GetRunnerSpace?memberString=Fld4hv7wH9W0jE4myY1FuA%3D%3D",
+      url: "https://itra.run/RunnerSpace/fotiou.dimitrios.6457398",
     },
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
