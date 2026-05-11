@@ -2,6 +2,16 @@
 
 export const PROJECTS = [
   {
+    id: 'robofirefusenet',
+    title: 'RoboFireFuseNet',
+    desc: 'Robust Fusion of Visible and Infrared Wildfire Imaging for Real-Time Flame and Smoke Segmentation. Published at Pattern Recognition Letters (DOI:10.1016/j.patrec.2026.04.024)',
+    image: `${import.meta.env.BASE_URL}images/projects/robofirefusenet.png`,
+    demo: null,
+    github: 'https://github.com/dimfot3/RoboFireFuseNet',
+    tags: ['RGB', 'Infrared', 'Wildfire', 'DNN'],
+    tech: ['Python', 'Pytorch']
+  },
+  {
     id: 'thesis-detection',
     title: 'LiDAR-Based 3D Indoor Reconstruction & Human Segmentation',
     desc: 'Human/pose and plane degmentors on LiDAR point clouds (PointNet/PointNet++), with ROS2 apps and training utilities.',
