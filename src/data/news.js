@@ -54,7 +54,7 @@ export const NEWS = [
     id: 'aristurtle-project',
     title: 'Developed Greece’s First Formula Student Autonomous Vehicle',
     desc: 'Led perception and sensor fusion for Thetis, achieving 3rd in Skidpad & 4th in Dynamic Events at FS East.',
-    image: `${import.meta.env.BASE_URL}images/aristurtle.png`,
+    image: `${import.meta.env.BASE_URL}images/aristurtle.jpg`,
     url: 'https://www.aristurtle.gr/thetisdv/',
     startDate: '2020-08-01',
     endDate: '2021-10-31'
