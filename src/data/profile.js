@@ -41,5 +41,5 @@ export const athletic_profile = {
     // Uncomment if you want a CV link:
     // { type: "cv", label: "CV", url: "/cv_fotiou.pdf" },
   ],
-  about:  "I apply the same discipline I use in engineering to my physical training. Staying fit allows me to explore the outdoors in ways most people can't, whether it's navigating deep canyons or climbing mountain summits.",
+  about:  "Somewhere between the first step and the last, running brings a kind of clarity I rarely find elsewhere.",
 };
